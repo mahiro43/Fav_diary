@@ -49,7 +49,8 @@
 ＊画像加工・合成
 
 
-figma
+figma:
+
 https://www.figma.com/file/HwCvtyoEJuoy1h2Ks0ZHnN/%E7%84%A1%E9%A1%8C?type=design&node-id=0%3A1&mode=design&t=ECQPUb5tScy5SWSK-1
 
 ER図　[![Image from Gyazo](https://i.gyazo.com/ffa94214c29d30c2949609c1f8fc1c87.png)](https://gyazo.com/ffa94214c29d30c2949609c1f8fc1c87)
