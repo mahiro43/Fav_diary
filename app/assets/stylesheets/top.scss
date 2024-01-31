@@ -1,0 +1,38 @@
+.top-wrapper {
+  background-image: image-url("top2.jpg");
+  height: 100vh;
+  position: relative;
+  background-position: center;
+
+  .top-inner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    text-align: center;
+    font-size: 3rem;
+    color: rgb(11, 10, 10);
+
+    @media screen and (max-width: 767px) {
+      font-size: 2.0rem;
+    }
+
+    .login-button {
+      padding: 10px 20px; // ボタンの内側のスペース
+      background-color: #007bff; // 青色の背景
+      color: #ffffff; // 文字色を白に
+      border: none; // 枠線をなくす
+      border-radius: 20px; // 丸みを帯びた角
+      font-size: 1rem; // 文字サイズ
+      cursor: pointer; // ホバー時のカーソルを指に
+      margin-top: 20px; // テキストからの間隔
+      text-transform: uppercase; // テキストを大文字に
+      transition: background-color 0.3s; // 背景色の変化をスムーズに
+      
+      &:hover {
+        background-color: #0056b3; // ホバー時の背景色を濃い青に
+      }
+    }
+  }
+}
