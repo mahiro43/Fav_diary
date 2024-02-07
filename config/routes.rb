@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
+  resources :favs, only: [:index, :new, :create]
 
   get 'login' => 'sessions#new', as: :login
   post 'logout' => 'sessions#destroy', as: :logout
