@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推し登録</title>
+<style>
+  body {
+    font-family: sans-serif;
+  }
+  .container {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+  .form-header {
+    background-color: #fef4f4;
+    padding: 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .form-body {
+    padding: 20px;
+    border: 1px solid #e3e3e3;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-top: none;
+  }
+  .img-preview {
+    width: 100px; /* 画像の幅を100pxに設定 */
+    height: 100px; /* 画像の高さを100pxに設定 */
+    border-radius: 50%; /* 画像を円形にする */
+    object-fit: cover; /* 画像の比率を保ちつつ、設定した領域にフィットさせる */
+  }
+
+  .btn-small {
+    width: auto; /* ボタンの幅を自動に設定 */
+    padding: 8px 15px; /* ボタン内の余白を小さくする */
+  }
+  .center {
+  display: flex;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="form-header">
+    <h1>推しのプロフィール</h1>
+  </div>
+  <div class="form-body">
+    <%= form_for @fav, html: { multipart: true } do |f| %>
+      <div class="form-group">
+        <%= f.label :name, "名前" %>
+        <%= f.text_field :name, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :nickname, "ニックネーム" %>
+        <%= f.text_field :nickname, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :birthday, "生年月日" %>
+        <%= f.date_select :birthday, start_year: 1970, end_year: Date.today.year, use_month_numbers: true, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :color, "推しカラー" %>
+        <%= f.text_field :color, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+        <%= f.label :comments, "フリースペース（推している所など自由に書いてください）" %>
+        <%= f.text_area :comments, class: 'form-control' %>
+      </div>
+      
+      <div class="form-group">
+       <%= f.label :image, "アイコン" %>
+       <%= f.file_field :image, id: 'fav_image', class: 'form-control' %>
+       <%# プレビュー画像またはデフォルト画像を表示 %>
+       <%= image_tag(@fav.image? ? @fav.image.url : 'fav1.png', id: 'image-preview', class: 'img-preview') %>
+      </div>
+      
+      <div class="form-group center">
+        <%= f.submit '登録', class: 'btn-small' %>
+      </div>
+
+      <script>
+        // ドキュメントが読み込まれた後に実行される関数を定義
+        document.addEventListener("DOMContentLoaded", function() {
+        // 画像ファイルフィールドが変更された時のイベントリスナーを追加
+        document.querySelector('#fav_image').addEventListener('change', function(e) {
+          var file = e.target.files[0]; // 選択されたファイルを取得
+          var reader = new FileReader();
+          reader.onload = function(e) {
+            document.querySelector('#image-preview').setAttribute('src', e.target.result);
+          }
+          reader.readAsDataURL(file); // ファイルをDataURLとして読み込む
+        });
+       });
+      </script>
+    <% end %>
+  </div>
+</div>
+</body>
+</html>

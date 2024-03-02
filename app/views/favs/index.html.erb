@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>推し登録</title>
+<style>
+  .text-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  h1.mt-4 {
+    margin-bottom: 2rem; /* テキストとボタンの間のスペースを調整 */
+  }
+
+  .btn-secondary {
+    margin-top: 2rem; /* ボタンの上のスペースを調整 */
+    display: flex; /* Flexboxを使用 */
+    justify-content: center; /* 水平方向の中央揃え */
+    align-items: center; /* 垂直方向の中央揃え */
+    width: 5rem; /* ボタンの幅を設定 */
+    height: 5rem; /* ボタンの高さを設定 */
+    border-radius: 50%; /* 丸みを帯びたボーダーを作成 */
+    font-size: 2rem; /* プラス記号のサイズを調整 */
+    line-height: 1; /* テキストの行高を調整 */
+  }
+  .circle-image {
+    width: 100px; /* 画像の幅を設定 */
+    height: 100px; /* 画像の高さを設定 */
+    border-radius: 50%; /* 画像を円形にする */
+    object-fit: cover; /* 画像の比率を保ちつつ、設定した領域にフィットさせる */
+  }
+   .favs-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* アイテム間に均等なスペースを作成 */
+    gap: 60px;
+  }
+
+  .fav-item {
+    flex-basis: calc(50% - 40px); /* 2列のレイアウトのために幅を計算 */
+    margin-bottom: 30px; /* アイテム間の縦のスペース */
+    text-align: center; /* テキストを中央揃えに */
+  }
+
+  .circle-image {
+    width: 100px; /* 画像の幅 */
+    height: 100px; /* 画像の高さ */
+    border-radius: 50%; /* 画像を円形に */
+    object-fit: cover; /* 画像の比率を保ちつつ、設定した領域にフィットさせる */
+    display: block; /* インライン要素からブロック要素に変更 */
+    margin: 0 auto 10px; /* 上下のマージンを0にし、左右のマージンを自動にして中央に */
+  }
+  .circle-button {
+  width: 100px; /* ボタンの幅をfavアイテムと同じにする */
+  height: 100px; /* ボタンの高さをfavアイテムと同じにする */
+  border-radius: 50%; /* ボタンを円形にする */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  text-decoration: none; /* リンクの下線を削除 */
+  color: inherit; /* テキスト色を継承 */
+  background-color: #ccc; /* ボタンの背景色 */
+  border: none; /* ボタンの境界線を削除 */
+  margin: 0 auto; /* ボタンを中央に配置 */
+}
+
+</style>
+</head>
+<body>
+<div class="container mt-5">
+  <div class="text-center">
+    <h1 class="mt-4">推し登録</h1>
+    <div class="favs-container">
+      <% @favs.each do |fav| %>
+        <div class="fav-item">
+          <%= link_to fav_diaries_path(fav) do %>
+          <%= image_tag(fav.image.present? ? fav.image.url : 'fav1.png', class: "circle-image") %>
+          <p><%= fav.name %></p>
+          <% end %>
+        </div>
+      <% end %>
+      <div class="fav-item">
+        <%= link_to new_fav_path, class: 'btn btn-secondary circle-button', role: 'button' do %>＋<% end %>
+      </div>
+    </div>
+  </div>
+</div>
