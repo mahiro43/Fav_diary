@@ -32,6 +32,12 @@ gem 'jquery-rails'
 
 gem "sassc-rails"
 
+gem 'font-awesome-sass', '~> 5.11.2'
+
+gem 'bcrypt', '~> 3.1.7'
+
+gem "carrierwave"
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
