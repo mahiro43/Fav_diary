@@ -99,14 +99,11 @@ class DiariesController < ApplicationController
     @fav = Fav.find(params[:fav_id])
   end
 
-  def set_diary
-    @diary = Diary.find(params[:id])
-  end
 
   def set_diaries
     @diaries = @fav ? @fav.diaries : Diary.all
   end
-
+  
   def diary_params
     params.require(:diary).permit(:fav_id, :date, :content, :address, :latitude, :longitude, images: [])
   end

@@ -6,6 +6,7 @@ class Diary < ApplicationRecord
   has_many_attached :images
 
   validates :content, presence: true
+<<<<<<< HEAD
 
   def self.exists_on?(date)
     where("date(created_at) = ?", date).exists?
