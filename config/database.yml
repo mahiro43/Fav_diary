@@ -79,6 +79,5 @@ test:
 #
 production:
   <<: *default
-  database: fav_diary_production
-  username: fav_diary
-  password: <%= ENV["FAV_DIARY_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
+  
