@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   #resources :diaries, only: [:index, :new, :create, :show, :edit, :update, :destroy]
   resources :favs, only: [:index, :new, :create] do
-    resources :diaries, only: [:index, :new, :create, :edit]
+    resources :diaries, only: [:index, :new, :create, :edit, :update, :destroy, :show]
   end
 
   get 'login' => 'sessions#new', as: :login

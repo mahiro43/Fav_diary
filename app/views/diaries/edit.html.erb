@@ -1,0 +1,18 @@
+<div class="container">
+  <%= form_with(model: [@fav, @diary], local: true) do |form| %>
+    <!-- 日付と「完了」ボタン -->
+    <div class="row bg-light py-2 justify-content-between">
+      <div class="col-auto">
+        <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
+      </div>
+      <div class="col-auto">
+        <%= form.submit '完了', class: 'btn btn-primary' %>
+      </div>
+    </div>
+
+    <!-- テキストエリア -->
+    <div class="form-group mt-3">
+      <%= form.text_area :content, class: 'form-control form-control-no-border', rows: 10, placeholder: '日記を書く' %>
+    </div>
+  <% end %>
+</div>

@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_173348) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_07_185351) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "diaries", force: :cascade do |t|
+    t.bigint "fav_id", null: false
+    t.date "date"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fav_id"], name: "index_diaries_on_fav_id"
+  end
 
   create_table "favs", force: :cascade do |t|
     t.string "name"
@@ -42,8 +51,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_173348) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "diaries", "favs"
   add_foreign_key "favs", "users"
   add_foreign_key "sessions", "users"
 end
