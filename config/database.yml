@@ -82,6 +82,3 @@ production:
   database: fav_diary_production
   username: fav_diary
   password: <%= ENV["FAV_DIARY_DATABASE_PASSWORD"] %>
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
