@@ -1,6 +1,7 @@
 class DiariesController < ApplicationController
   before_action :set_diary, only: [:show, :edit, :update, :destroy]
   before_action :set_fav
+  before_action :set_diaries, only: [:index, :calendar]
   def index
     if params[:fav_id]
       @fav = Fav.find_by(id: params[:fav_id])
@@ -10,6 +11,19 @@ class DiariesController < ApplicationController
       @diaries = Doary.all
     end
   end
+
+  def calendar
+    @fav_name = @fav&.name
+    @date = params[:start_date] ? params[:start_date].to_date : Date.today
+    start_date = @date.beginning_of_month
+    end_date = @date.end_of_month
+
+    # その月の日記だけを取得するための範囲を設定
+    @monthly_diaries = @diaries.where(date: start_date..end_date)
+
+    # カレンダーを表示するための日付範囲
+    @date_range = (start_date.beginning_of_week(:monday)..end_date.end_of_week(:monday)).to_a
+  end      
     
   def new
     @diary = Diary.new(fav_id: params[:fav_id])
@@ -54,6 +68,10 @@ class DiariesController < ApplicationController
 
   def set_diary
     @diary = Diary.find(params[:id])
+  end
+
+  def set_diaries
+    @diaries = @fav ? @fav.diaries : Diary.all
   end
         
   def diary_params
