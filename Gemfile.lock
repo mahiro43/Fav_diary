@@ -299,6 +299,7 @@ DEPENDENCIES
   carrierwave
   debug
   font-awesome-sass (~> 5.11.2)
+  i18n
   importmap-rails
   jbuilder
   jquery-rails

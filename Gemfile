@@ -40,6 +40,10 @@ gem "carrierwave"
 
 gem 'simple_calendar'
 
+gem 'i18n'
+
+gem 'ransack'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 

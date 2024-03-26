@@ -1,0 +1,47 @@
+<div class="simple-calendar">
+  <div class="calendar-heading">
+    <time datetime="<%= start_date.strftime('%Y-%m') %>" class="calendar-title"><%= t('date.month_names')[start_date.month] %> <%= start_date.year %></time>
+
+    <nav>
+      <%= link_to '前月', calendar.url_for_previous_view %>
+      <%= link_to '今日', calendar.url_for_today_view %>
+      <%= link_to '次月', calendar.url_for_next_view%>
+    </nav>
+  </div>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <% date_range.slice(0, 7).each do |day| %>
+          <th><%= t('date.abbr_day_names')[day.wday] %></th>
+        <% end %>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @date_range.each_slice(7) do |week| %>
+        <tr>
+          <% week.each do |day| %>
+            <% is_diary_written = @diaries.any? { |diary| diary.date == day } %>
+            <% today_class = (day == Date.today) ? 'today' : '' %>
+            <td class="<%= "#{calendar.td_classes_for(day)} calendar-day #{today_class} #{'has-diary' if is_diary_written}" %>">
+              <%= day.day %>
+              <% if is_diary_written %>
+                <span class="diary-mark">✏️</span>
+              <% end %>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="container mt-5">
+    <% @monthly_diaries.each do |diary| %>
+      <%= link_to fav_diary_path(diary.fav_id, diary.id), class: "diary-entry mb-3 p-3 border rounded d-block", style: "color: inherit; text-decoration: none;" do %>
+        <h5><%= diary.date.strftime("%Y年%m月%d日") %></h5>
+        <p><%= diary.content %></p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

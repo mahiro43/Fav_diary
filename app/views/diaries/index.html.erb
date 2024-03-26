@@ -65,7 +65,7 @@
       <%= link_to 'トップページ', favs_path, class: 'nav-link' %>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="#">カレンダー</a>
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="#">検索
