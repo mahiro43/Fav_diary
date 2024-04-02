@@ -6,4 +6,8 @@ class Diary < ApplicationRecord
   def self.exists_on?(date)
     where("date(created_at) = ?", date).exists?
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    %w[content]
+  end
 end

@@ -1,0 +1,24 @@
+<div class="profile-header">
+  <h1><%= @fav.name %>のプロフィール</h1>
+  <div class="profile-actions">
+    <%= link_to '編集', edit_fav_path(@fav), class: 'btn btn-primary' %>
+    <%= link_to '削除', fav_path(@fav), data: { turbo_method: :delete, turbo_confirm: 'この推しプロフィールを本当に削除しますか？' }, class: 'btn btn-danger' %>
+  </div>
+</div>
+
+<div class="profile-body">
+  <p><strong>アイコン:</strong></p>
+    <div class="profile-image-container">
+      <% image_path = @fav.image.present? ? @fav.image.url : 'fav1.png' %>
+      <%= image_tag(image_path, class: 'profile-image') %>
+    </div>
+  <p><strong>名前:</strong> <%= @fav.name %></p>
+  <p><strong>ニックネーム:</strong> <%= @fav.nickname %></p>
+  <p><strong>生年月日:</strong> <%= @fav.birthday.strftime("%Y年%m月%d日") %></p>
+  <p><strong>推しカラー:</strong> <%= @fav.color %></p>
+  <p><strong>フリースペース:</strong> <%= @fav.comments %></p>
+</div>
+
+<div class="back-link">
+  <%= link_to '戻る', fav_diaries_path(@fav), class: 'btn btn-secondary' %>
+</div>

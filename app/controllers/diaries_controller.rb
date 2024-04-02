@@ -12,6 +12,17 @@ class DiariesController < ApplicationController
     end
   end
 
+  def search
+    @q = @fav.diaries.ransack(params[:q])
+    @diaries = @q.result(distinct: true) if params[:q].present? && params[:q][:content_cont].present?
+  end
+  
+  def autocomplete
+    query = params[:term] || params[:q]  # クエリパラメータに応じて調整
+    @diaries = @fav.diaries.where("content LIKE ?", "%#{query}%").limit(5)
+    render json: @diaries.map { |diary| { id: diary.id, content: diary.content } }
+  end
+
   def calendar
     @fav_name = @fav&.name
     @date = params[:start_date] ? params[:start_date].to_date : Date.today
@@ -23,8 +34,14 @@ class DiariesController < ApplicationController
 
     # カレンダーを表示するための日付範囲
     @date_range = (start_date.beginning_of_week(:monday)..end_date.end_of_week(:monday)).to_a
-  end      
-    
+  end
+
+  def autocomplete
+    query = params[:term] || params[:q]  # クエリパラメータに応じて調整
+    @diaries = @fav.diaries.where("content LIKE ?", "%#{query}%").limit(5)
+    render json: @diaries.map { |diary| { id: diary.id, content: diary.content } }
+  end
+      
   def new
     @diary = Diary.new(fav_id: params[:fav_id])
   end

@@ -1,0 +1,45 @@
+// プロフィールの詳細画面
+.profile-image-container .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+.profile-header {
+  background-color: #f0f0f0; // 灰色の背景色
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-body {
+  padding: 20px;
+}
+
+.profile-actions {
+  text-align: right;
+}
+
+
+.form-group {
+  margin-bottom: 20px; /* フォームフィールド間のスペースを調整 */
+}
+
+.img-preview {
+  width: 80px; /* アイコンのサイズを小さくする */
+  height: 80px;
+  border-radius: 50%; /* 画像を円形にする */
+  object-fit: cover; /* 画像を領域にフィットさせる */
+}
+
+.form-header {
+  margin-bottom: 20px; /* ヘッダーとフォームの間のスペース */
+}
+
+.back-link {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* 上に少しスペースを追加 */
+}

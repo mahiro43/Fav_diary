@@ -4,9 +4,13 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create]
   resources :sessions, only: [:new, :create, :destroy]
   #resources :diaries, only: [:index, :new, :create, :show, :edit, :update, :destroy]
-  resources :favs, only: [:index, :new, :create] do
+  resources :favs, only: [:index, :new, :create, :show, :edit, :destroy, :update] do
     resources :diaries, only: [:index, :new, :create, :edit, :update, :destroy, :show] do
-      get 'calendar', on: :collection
+      collection do
+        get 'calendar'
+        get 'search'
+        get :autocomplete
+      end
     end
   end
 

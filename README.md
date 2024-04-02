@@ -35,9 +35,10 @@
 ＊日記一覧
 ＊日記編集、削除
 ＊カレンダー機能
-＊マルチ検索
+＊検索機能
 
 ### その後の機能
+＊オートコンプリート
 ＊基本設定
 　・色設定
 　・色の変更
@@ -47,6 +48,8 @@
 ＊日記に写真を投稿できる
 ＊画像加工・合成
 
+### Ruby　・ Rails
+  3.2.2 ・ 7系
 
 https://www.figma.com/file/HwCvtyoEJuoy1h2Ks0ZHnN/%E7%84%A1%E9%A1%8C?type=design&node-id=0%3A1&mode=design&t=ECQPUb5tScy5SWSK-1
 

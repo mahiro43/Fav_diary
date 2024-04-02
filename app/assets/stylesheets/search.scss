@@ -1,0 +1,20 @@
+.search-form {
+  width: 100%; /* フォームの幅を親要素いっぱいに */
+  max-width: 500px; /* 最大幅を設定 */
+  margin: 0 auto; /* 中央揃え */
+}
+
+.search-bar {
+  display: flex;
+  align-items: center; /* 垂直方向の中央揃え */
+  justify-content: center; /* 水平方向の中央揃え */
+}
+
+.search-input {
+  flex: 1; /* 利用可能なスペースを使って拡大 */
+  margin-right: 1rem; /* ボタンとの間に余白を設定 */
+}
+
+.search-btn {
+  white-space: nowrap; /* ボタンのテキストが折り返さないように */
+}
