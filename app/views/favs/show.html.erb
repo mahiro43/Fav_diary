@@ -2,7 +2,7 @@
   <h1><%= @fav.name %>のプロフィール</h1>
   <div class="profile-actions">
     <%= link_to '編集', edit_fav_path(@fav), class: 'btn btn-primary' %>
-    <%= link_to '削除', fav_path(@fav), data: { turbo_method: :delete, turbo_confirm: 'この推しプロフィールを本当に削除しますか？' }, class: 'btn btn-danger' %>
+    <%= link_to '削除', fav_path(@fav), data: { turbo_method: :delete, turbo_confirm: 'このプロフィールを本当に削除しますか？' }, class: 'btn btn-danger' %>
   </div>
 </div>
 
