@@ -1,7 +1,35 @@
-<div class='top-wrapper'>
-  <div class='top-inner-text'>
-    <h1>私の推し事活動</h1>
-    <h5>日々の推し活の記録を残して推しごとに管理できます</h5>
-    <%= link_to "ログイン", login_path, class: "login-button" %>
+<!DOCTYPE html>
+<html>
+  <header>
+    <div class='header-content'>
+      <%= image_tag 'logo2.png', alt: 'ロゴ', class: 'small-image' %>
+      <h1><a href="<%= root_path %>" class="home-link">私の推し事活動</a></h1>
+    </div>
+    <nav>
+      <a href="/signup" class="button">新規登録</a>
+      <a href="/login" class="button">ログイン</a>
+    </nav>
+  </header>
+  <%= yield %>
+
+  <body>
+    <div class='body-content'>
+      <%= image_tag 'top3.png', alt: 'ロゴ', class: 'body-image' %>
+      <h2>推し活をした際に記録を書くことができるサービスになっております。複数推しがいる方でも分けて記録を書くことができます。</h2>
+    </div>
+   
+    <h3>☆　使い方　☆</h3>
+    <div class='body-content2'>
+      <%= image_tag 'top4.png', alt: 'ロゴ', class: 'body2-image' %>
+      <%= image_tag 'top5.png', alt: 'ロゴ', class: 'body2-image' %>
+      <%= image_tag 'top6.png', alt: 'ロゴ', class: 'body2-image' %>
+    </div>
+  </body>
+
+  <div class="footer-content">
+    <ul>
+      <li><a href="/kiyaku">利用規約</a></li>
+      <li><a href="/privacy">プライバシーポリシー</a></li>
+    </ul>
   </div>
-</div>
+</html>

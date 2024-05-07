@@ -18,6 +18,9 @@ Rails.application.routes.draw do
   post 'logout' => 'sessions#destroy', as: :logout
 
   get 'signup', to: 'users#new'
+
+  get '/kiyaku', to: 'kiyaku#terms'
+  get '/privacy', to: 'kiyaku#privacy'
 end
   #get 'top/index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
