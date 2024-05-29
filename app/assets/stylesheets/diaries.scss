@@ -1,0 +1,26 @@
+.container {
+  margin-bottom: 50px;
+}
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+  
+.image-container .delete-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  color: red;
+  text-decoration: none;
+  border: none;
+  font-size: 20px;
+}
+  
+.img-thumbnail {
+  width: 100px;
+  height: 100px;
+}
+  
+

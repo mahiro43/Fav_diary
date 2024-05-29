@@ -1,14 +1,14 @@
 class DiariesController < ApplicationController
-  before_action :set_diary, only: [:show, :edit, :update, :destroy]
+  before_action :set_diary, only: [:show, :edit, :update, :destroy, :delete_image]
   before_action :set_fav
   before_action :set_diaries, only: [:index, :calendar]
   def index
     if params[:fav_id]
       @fav = Fav.find_by(id: params[:fav_id])
-      @diaries = @fav.present? ? @fav.diaries : Diary.none
+      @diaries = @fav.present? ? @fav.diaries.order(date: :desc) : Diary.none
       @fav_name = @fav&.name
     else
-      @diaries = Doary.all
+      @diaries = Doary.order(date: :desc)
     end
   end
 
@@ -50,8 +50,10 @@ class DiariesController < ApplicationController
     @diary = Diary.new(diary_params)
     
     if @diary.save
-      redirect_to fav_diaries_path(fav_id: @diary.fav_id), notice: '日記が正常に作成されました。'
+      @diary.resize_images
+      redirect_to fav_diaries_path(fav_id: @diary.fav_id), success: t('.success')
     else
+      flash.now[:danger] = t('.fail')
       render :new
     end
   end
@@ -62,21 +64,35 @@ class DiariesController < ApplicationController
   end
 
   def update
-    if @diary.update(diary_params)
-      redirect_to fav_diaries_path(@diary.fav), notice: '日記が更新されました。'
+    # 新しい画像がある場合のみ添付
+    if diary_params[:images]
+      @diary.images.attach(diary_params[:images])
+    end
+  
+    # imagesパラメータを除外して日記のその他の属性を更新
+    if @diary.update(diary_params.except(:images))
+      @diary.resize_images if diary_params[:images]
+      redirect_to fav_diaries_path(@diary.fav), success: t('.success')
     else
+      flash.now[:danger] = t('.fail')
       render :edit
     end
   end
 
   def destroy
     @diary.destroy
-    redirect_to fav_diaries_path(@fav), notice: '日記が削除されました。'
+    redirect_to fav_diaries_path(@fav), success: t('.success')
   end
 
   def show
   end
-        
+  
+  def delete_image
+    image = @diary.images.find(params[:image_id])
+    image.purge if image.present?
+    redirect_back(fallback_location: edit_fav_diary_path(@fav, @diary), notice: '画像が削除されました。')
+  end
+            
   private
 
   def set_fav
@@ -90,8 +106,8 @@ class DiariesController < ApplicationController
   def set_diaries
     @diaries = @fav ? @fav.diaries : Diary.all
   end
-        
+
   def diary_params
-    params.require(:diary).permit(:fav_id, :date, :content)
+    params.require(:diary).permit(:fav_id, :date, :content, :address, :latitude, :longitude, images: [])
   end
 end

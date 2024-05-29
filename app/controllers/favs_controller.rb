@@ -12,9 +12,9 @@ class FavsController < ApplicationController
   def create
     @fav = current_user.favs.build(fav_params)
     if @fav.save
-      redirect_to favs_path, notice: 'Fav was successfully created.'
+      redirect_to favs_path, success: t('.success')
     else
-      logger.debug @fav.errors.full_messages
+      flash.now[:danger] = t('.fail')
       render :new
     end
   end
@@ -29,13 +29,13 @@ class FavsController < ApplicationController
   def destroy
     @fav = Fav.find(params[:id])
     @fav.destroy
-    redirect_to favs_path, notice: '削除されました。'
+    redirect_to favs_path, success: t('.success')
   end
 
   def update
     @fav = Fav.find(params[:id])
     if @fav.update(fav_params)
-      redirect_to fav_path(@fav), notice: '推しのプロフィールが更新されました。'
+      redirect_to fav_path(@fav), success: t('.success')
     else
       render :edit
     end

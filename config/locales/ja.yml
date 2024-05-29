@@ -17,3 +17,28 @@ ja:
       - :year
       - :month
       - :day
+  users:
+    create:
+      success: 'ユーザー登録が完了しました'
+      fail: 'ユーザー登録に失敗しました'
+  sessions:
+    create:
+      success: 'ログインしました'
+      fail: 'ログインに失敗しました'
+  favs:
+    create:
+      success: '推しが登録されました'
+      fail: '推し登録に失敗しました'
+    destroy:
+      success: '推しが削除されました'
+    update:
+      success: 'プロフィールが更新されました'
+  diaries:
+    create:
+      success: '日記が作成されました'
+      fail: '日記作成に失敗しました'
+    update:
+      success: '日記が更新されました'
+      fail: '日記更新に失敗しました'
+    destroy:
+      success: '日記が削除されました'

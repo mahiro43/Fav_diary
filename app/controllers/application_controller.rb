@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   helper_method :log_in, :current_user, :logged_in?
+
+  add_flash_types :success, :info, :warning, :danger
   
   def log_in(user)
     session[:user_id] = user.id

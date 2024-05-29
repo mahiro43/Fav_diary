@@ -7,9 +7,9 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:session][:password])
       # ログイン成功時の処理
       log_in user
-      redirect_to favs_path, notice: "Logged in successfully"
+      redirect_to favs_path, success: t('.success')
     else
-      flash.now.alert = "Email or password was invalid"
+      flash.now[:danger] = t('.fail')
       render :new
     end
   end
