@@ -54,7 +54,11 @@ class DiariesController < ApplicationController
       redirect_to fav_diaries_path(fav_id: @diary.fav_id), success: t('.success')
     else
       flash.now[:danger] = t('.fail')
+<<<<<<< HEAD
       render :new, status: :unprocessable_entity
+=======
+      render :new
+>>>>>>> 4b4bf67 (マップ、複数画像)
     end
   end
 
@@ -106,7 +110,7 @@ class DiariesController < ApplicationController
   def set_diaries
     @diaries = @fav ? @fav.diaries : Diary.all
   end
-        
+
   def diary_params
     params.require(:diary).permit(:fav_id, :date, :content, :address, :latitude, :longitude, images: [])
   end
