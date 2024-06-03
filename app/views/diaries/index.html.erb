@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日記アプリ</title>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  .add-button {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #B3B3B3;
+    color: #000;
+    border-radius: 50%;
+    font-size: 30px;
+    line-height: 50px;
+    text-align: center;
+    text-decoration: none;
+  }  
+  .text-shift-right {
+    margin-left: 20px;
+    font-size: 24px; 
+  }
+
+  .extra-margin-bottom {
+  margin-bottom: 65px;
+}
+
+</style>
+</head>
+<body>
+
+<header class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <div class="d-flex align-items-center">
+    <p class="mb-0 text-shift-right"><%= @fav_name.present? ? @fav_name + "の活動記録" : "活動記録" %></p>
+  </div>
+  <div class="align-items-center">
+    <%= link_to '推しプロフィール', fav_path(@fav), class: 'btn btn-light' %>
+  </div>
+</header>
+
+<div class="container mt-5 extra-margin-bottom">
+  <% @diaries.each do |diary| %>
+    <%= link_to fav_diary_path(diary.fav_id, diary.id), class: "diary-entry mb-3 p-3 border rounded d-block", style: "color: inherit; text-decoration: none;" do %>
+      <h5><%= diary.date.strftime("%Y年%m月%d日") %></h5>
+      <p><%= diary.content %></p>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- プラスボタン -->
+<% if params[:fav_id] %>
+    <%= link_to '+', new_fav_diary_path(params[:fav_id]), class: 'add-button' %>
+<% else %>
+    <%= link_to '+', new_diary_path, class: 'add-button' %>
+<% end %>
+
+<!-- ナビゲーションメニュー -->
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <ul class="nav nav-justified w-100">
+    <li class="nav-item">
+      <a class="nav-link" href="#">記録</a>
+    </li>
+    <li class="nav-item">
+      <%= link_to '推し一覧', favs_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '検索', search_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+  </ul>
+</nav>
+
+<script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+</body>
+</html>

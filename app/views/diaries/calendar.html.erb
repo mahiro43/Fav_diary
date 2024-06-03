@@ -1,0 +1,26 @@
+<header class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <div class="d-flex align-items-center">
+    <p class="mb-0 text-shift-right"><%= @fav_name.present? ? @fav_name + "の活動記録カレンダー" : "活動記録" %></p>
+  </div>
+</header>
+
+<%= month_calendar do |date| %>
+  <%= date.day %>
+<% end %>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <ul class="nav nav-justified w-100">
+    <li class="nav-item">
+      <%= link_to '記録', fav_diaries_path(@fav), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '推し一覧', favs_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '検索', search_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+  </ul>
+</nav>

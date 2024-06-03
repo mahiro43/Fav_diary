@@ -1,0 +1,55 @@
+<div class="container mb-5">
+  <%= form_with(model: [@fav, @diary], local: true) do |form| %>
+    <!-- 日付と「完了」ボタン -->
+    <div class="row bg-light py-2 justify-content-between">
+      <div class="col-auto">
+        <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
+      </div>
+      <div class="col-auto">
+        <%= form.submit '完了', class: 'btn btn-primary' %>
+      </div>
+    </div>
+
+    <% @diary.images.each do |image| %>
+      <div class="image-container" style="position: relative; display: inline-block;">
+        <%= image_tag(image, size: "100x100", class: "img-thumbnail") %>
+        <%= link_to '✖︎', delete_image_fav_diary_path(@fav, @diary, image_id: image.id), method: :delete, data: { confirm: 'この画像を削除しますか？' }, class: "delete-icon", style: "position: absolute; top: 0; right: 0; background: none; border: none; color: red; font-size: 20px; cursor: pointer; text-decoration: none;" %>
+      </div>
+    <% end %>
+            
+  <%# 新しい画像をアップロードするためのフィールド %>
+  <div class="form-group mt-3">
+    <%= form.label :images, '画像を追加' %>
+    <%= form.file_field :images, multiple: true, accept: 'image/*', class: 'form-control' %>
+  </div>
+
+    <!-- テキストエリア -->
+    <div class="form-group mt-3">
+      <%= form.text_area :content, class: 'form-control form-control-no-border', rows: 10, placeholder: '記録を書く' %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  .form-group + .form-group {
+    margin-bottom: 70px;
+  }
+</style>
+  
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <ul class="nav nav-justified w-100">
+    <li class="nav-item">
+      <%= link_to '記録', fav_diaries_path(@fav), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '推し一覧', favs_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '検索', search_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+  </ul>
+</nav>

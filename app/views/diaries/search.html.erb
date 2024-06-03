@@ -1,0 +1,40 @@
+<header class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+  <div class="d-flex align-items-center">
+    <p class="mb-0 text-shift-right">記録検索</p>
+  </div>
+</header>
+
+<%= search_form_for @q, url: search_fav_diaries_path(@fav), method: :get, html: { class: 'search-form' } do |f| %>
+  <div class="search-bar d-flex justify-content-center">
+    <%= f.search_field :content_cont, placeholder: 'キーワードを入力', class: 'form-control search-input' %>
+    <%= f.submit '検索', class: 'btn btn-outline-success search-btn' %>
+  </div>
+<% end %>
+
+<div class="container mt-5">
+  <% if @diaries %>
+    <% @diaries.each do |diary| %>
+      <%= link_to fav_diary_path(diary.fav_id, diary.id), class: "diary-entry mb-3 p-3 border rounded d-block", style: "color: inherit; text-decoration: none;" do %>
+        <h5><%= diary.date.strftime("%Y年%m月%d日") %></h5>
+        <p><%= diary.content %></p>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <ul class="nav nav-justified w-100">
+    <li class="nav-item">
+      <%= link_to '記録', fav_diaries_path(@fav), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '推し一覧', favs_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '検索', search_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+  </ul>
+</nav>
