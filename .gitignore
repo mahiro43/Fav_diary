@@ -33,5 +33,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+app/views/diaries/*
 !app/views/diaries/new.html.erb
 !app/views/diaries/show.html.erb
