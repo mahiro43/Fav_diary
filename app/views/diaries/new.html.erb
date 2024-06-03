@@ -101,115 +101,28 @@
           });   
         }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" defer></script>
-    <% end %>
+<<<<<<< HEAD
 
-    <!-- 日付を表示し、変更できるようにするヘッダー -->
-    <div class="row bg-light py-2 justify-content-between">
-      <div class="col-auto">
-        <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
-      </div>
-      <div class="col-auto">
-        <%= form.submit '保存', class: 'btn btn-success' %>
-      </div>
-    </div>
-
-    <!-- 日記を書くためのテキストエリア -->
-    <div class="form-group mt-3">
-      <%= form.text_area :content, class: 'form-control form-control-no-border', rows: 10, placeholder: '記録を書く' %>
-    </div>
-  <% end %>
-</div>
-    <!-- 日記作成フォーム -->
-    <%= form_with(model: @diary, url: params[:fav_id] ? fav_diaries_path(params[:fav_id]) : diaries_path, local: true) do |form| %>
-      <% if params[:fav_id] %>
-        <%= form.hidden_field :fav_id, value: params[:fav_id] %>
-      <% end %>
-
-      <!-- 日付を表示し、変更できるようにするヘッダー -->
-      <div class="row bg-light py-2 justify-content-between">
-        <div class="col-auto">
-          <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
-        </div>
-        <div class="col-auto">
-          <%= form.submit '保存', class: 'btn btn-success' %>
-        </div>
-      </div>
-      
-      <div class="form-group mt-3">
-        <%= form.label :images, '画像を選択' %>
-        <%= form.file_field :images, multiple: true, accept: 'image/*', class: 'form-control' %>
-      </div>
-
-      <!-- 日記を書くためのテキストエリア -->
-      <div class="form-group mt-3">
-        <%= form.text_area :content, class: 'form-control form-control-no-border', rows: 10, placeholder: '記録を書く' %>
-      </div>
-
-      <h2>行った場所</h2>
-
-      <!-- 住所入力欄 -->
-      <div class="form-group mt-3">
-        <%= form.label :address, '住所' %>
-        <%= form.text_field :address, id: 'address', class: 'form-control' %>
-      </div>
-
-      <!-- 緯度と経度の隠しフィールド -->
-      <%= form.hidden_field :latitude, id: 'latitude' %>
-      <%= form.hidden_field :longitude, id: 'longitude' %>
-
-      <input type="button" value="Encode" onclick="codeAddress()">
-      <div id="display"></div>
-      <div id='map'></div>
-
-      <script>
-        let map;
-        let geocoder;
-        const display = document.getElementById('display');
-
-        function initMap(){
-          geocoder = new google.maps.Geocoder();
-          map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 35.6895, lng: 139.6917},
-            zoom: 12,
-          });
-
-          marker = new google.maps.Marker({
-            position:  {lat: 35.6895, lng: 139.6917},
-            map: map
-          });
-        }
-
-        function codeAddress(){
-          let inputAddress = document.getElementById('address').value;
-          geocoder.geocode( { 'address': inputAddress}, function(results, status) {
-            if (status == 'OK') {
-              map.setCenter(results[0].geometry.location);
-              var marker = new google.maps.Marker({
-                map: map,
-                position: results[0].geometry.location
-              });
-              display.textContent = "検索結果：" + results[0].geometry.location;
-
-              // 緯度・経度の値をフォームの隠しフィールドに設定
-              document.getElementById('latitude').value = results[0].geometry.location.lat();
-              document.getElementById('longitude').value = results[0].geometry.location.lng();
-            } else {
-              alert('該当する結果がありませんでした：' + status);
-            }
-          });   
-        }
-      </script>
-
+=======
+>>>>>>> c419040 (追加)
       <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
     <% end %>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+<<<<<<< HEAD
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
   
   </body>
+=======
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> c419040 (追加)
+</body>
+>>>>>>> 1251462 (追加)
 </html>
 
 <nav class="navbar fixed-bottom navbar-light bg-light">

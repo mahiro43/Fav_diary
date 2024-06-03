@@ -2,6 +2,7 @@
   <%= form_with(model: [@fav, @diary], local: true) do |form| %>
     <div class="row bg-light py-2 justify-content-between">
       <div class="col-auto">
+        <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
         <%= @diary.date.strftime('%-m月%-d日') rescue Date.today.strftime('%-m月%-d日') %>
       </div>
       <div class="col-auto">
