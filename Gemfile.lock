@@ -331,7 +331,10 @@ DEPENDENCIES
   capybara
   carrierwave
   debug
+<<<<<<< HEAD
   dotenv-rails
+=======
+>>>>>>> 32e022c (テストコード、フラッシュメッセージ)
   factory_bot_rails
   faker
   font-awesome-sass (~> 5.11.2)
