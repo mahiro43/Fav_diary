@@ -1,0 +1,96 @@
+<div class="container">
+  <%= form_with(model: [@fav, @diary], local: true) do |form| %>
+    <div class="row bg-light py-2 justify-content-between">
+      <div class="col-auto">
+        <%= @diary.date.strftime('%-m月%-d日') rescue Date.today.strftime('%-m月%-d日') %>
+      </div>
+      <div class="col-auto">
+        <%= link_to edit_fav_diary_path(@fav, @diary), class: 'btn btn-primary' do %>
+          <!-- ペンマークのSVG -->
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+            <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+          </svg>
+        <% end %>
+        <%= link_to fav_diary_path(@fav, @diary), method: :delete, data: { confirm: 'この記録を本当に削除しますか？' }, class: 'btn btn-danger' do %>
+          削除
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <% @diary.images.each do |image| %>
+        <div class="col-4 mb-3">
+          <%= link_to (image_tag(url_for(image), class: "img-fluid")), url_for(image), target: "_blank" %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <img src="" id="modalImage" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group mt-3">
+      <div class="form-control form-control-no-border" style="overflow: auto; height: auto; min-height: 100px;">
+        <%= simple_format(@diary.content, {}, wrapper_tag: "div") %>
+      </div>
+    </div>
+
+    <p><strong>住所:</strong> <%= @diary.address %></p>
+
+    <div id="map" style="height: 600px; width: 100%; margin-bottom: 100px;"></div>
+
+
+    <script>
+  function initMap() {
+    var latitude = <%= @diary.latitude %>;
+    var longitude = <%= @diary.longitude %>;
+
+    if (latitude && longitude) {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {lat: latitude, lng: longitude},
+        zoom: 12
+      });
+
+      var marker = new google.maps.Marker({
+        position: {lat: latitude, lng: longitude},
+        map: map
+      });
+    } else {
+      document.getElementById('map').innerHTML = '<p>位置情報がありません。</p>';
+    }
+  }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
+
+  <% end %>
+</div>
+
+<nav class="navbar fixed-bottom navbar-light bg-light">
+  <ul class="nav nav-justified w-100">
+    <li class="nav-item">
+      <%= link_to '記録', fav_diaries_path(@fav), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '推し一覧', favs_path, class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to 'カレンダー', calendar_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+    <li class="nav-item">
+      <%= link_to '検索', search_fav_diaries_path(fav_id: @fav.id), class: 'nav-link' %>
+    </li>
+  </ul>
+</nav>

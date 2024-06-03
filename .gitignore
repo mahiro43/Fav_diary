@@ -36,3 +36,5 @@
 app/views/diaries/*
 !app/views/diaries/new.html.erb
 !app/views/diaries/show.html.erb
+
+.env

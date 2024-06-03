@@ -113,6 +113,10 @@ GEM
       irb (~> 1.10)
       reline (>= 0.3.8)
     diff-lcs (1.5.1)
+    dotenv (3.1.2)
+    dotenv-rails (3.1.2)
+      dotenv (= 3.1.2)
+      railties (>= 6.1)
     drb (2.2.0)
       ruby2_keywords
     erubi (1.12.0)
@@ -327,6 +331,7 @@ DEPENDENCIES
   capybara
   carrierwave
   debug
+  dotenv-rails
   factory_bot_rails
   faker
   font-awesome-sass (~> 5.11.2)
