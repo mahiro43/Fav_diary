@@ -5,4 +5,6 @@ class User < ApplicationRecord
   has_many :favs, dependent: :destroy
 
   validates :email, uniqueness: true
+  validates :password, presence: true
+  validates :name, presence: true
 end

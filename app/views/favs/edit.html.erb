@@ -3,7 +3,7 @@
     <h1><%= @fav.name %>のプロフィールを編集</h1>
   </div>
   <div class="form-body">
-    <%= form_for @fav, html: { multipart: true } do |f| %>
+    <%= form_for @fav, html: { multipart: true }, data: { turbo: false } do |f| %>
       <div class="form-group">
         <%= f.label :name, "名前" %>
         <%= f.text_field :name, class: 'form-control' %>

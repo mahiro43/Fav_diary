@@ -54,7 +54,7 @@ class DiariesController < ApplicationController
       redirect_to fav_diaries_path(fav_id: @diary.fav_id), success: t('.success')
     else
       flash.now[:danger] = t('.fail')
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -75,7 +75,7 @@ class DiariesController < ApplicationController
       redirect_to fav_diaries_path(@diary.fav), success: t('.success')
     else
       flash.now[:danger] = t('.fail')
-      render :edit
+      render :edit, status: :unprocessable_entity
     end
   end
 

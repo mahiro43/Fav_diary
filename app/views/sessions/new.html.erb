@@ -5,7 +5,7 @@
         <div class="card-body">
           <h2 class="text-center mb-4">ログイン</h2>
 
-          <%= form_for :session, url: sessions_path, html: { class: 'form-horizontal' } do |f| %>
+          <%= form_for :session, url: sessions_path, html: { class: 'form-horizontal', data: { turbo: false } } do |f| %>
             <div class="form-group mb-4"> <!-- メール入力欄にマージンを追加 -->
               <%= f.label :email, "メールアドレス", class: 'form-label' %>
               <%= f.email_field :email, class: 'form-control' %>
