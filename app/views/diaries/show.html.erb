@@ -2,7 +2,6 @@
   <%= form_with(model: [@fav, @diary], local: true) do |form| %>
     <div class="row bg-light py-2 justify-content-between">
       <div class="col-auto">
-        <%= form.date_field :date, value: @diary.date || Date.today, class: 'form-control' %>
         <%= @diary.date.strftime('%-m月%-d日') rescue Date.today.strftime('%-m月%-d日') %>
       </div>
       <div class="col-auto">
@@ -76,71 +75,6 @@
 
 <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" defer></script>
 
-
-  <% end %>
-</div>
-    <div class="row">
-      <% @diary.images.each do |image| %>
-        <div class="col-4 mb-3">
-          <%= link_to (image_tag(url_for(image), class: "img-fluid")), url_for(image), target: "_blank" %>
-        </div>
-      <% end %>
-    </div>
-
-    <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="imageModalLabel">Image Preview</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <img src="" id="modalImage" class="img-fluid">
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group mt-3">
-      <div class="form-control form-control-no-border" style="overflow: auto; height: auto; min-height: 100px;">
-        <%= simple_format(@diary.content, {}, wrapper_tag: "div") %>
-      </div>
-    </div>
-
-    <p><strong>住所:</strong> <%= @diary.address %></p>
-
-    <div id="map" style="height: 600px; width: 100%; margin-bottom: 100px;"></div>
-
-
-    <script>
-  function initMap() {
-    var latitude = <%= @diary.latitude %>;
-    var longitude = <%= @diary.longitude %>;
-
-    if (latitude && longitude) {
-      var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: latitude, lng: longitude},
-        zoom: 12
-      });
-
-      var marker = new google.maps.Marker({
-        position: {lat: latitude, lng: longitude},
-        map: map
-      });
-    } else {
-      document.getElementById('map').innerHTML = '<p>位置情報がありません。</p>';
-    }
-  }
-</script>
-<<<<<<< HEAD
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" async defer></script>
-=======
-
-<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" defer></script>
-
->>>>>>> 0a41de1 (googlmap修正)
 
   <% end %>
 </div>
