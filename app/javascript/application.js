@@ -3,6 +3,9 @@
 //= require popper
 //= require bootstrap
 //= require rails-ujs
+import Rails from "@rails/ujs"
 import "@hotwired/turbo-rails"
 import "controllers"
 import './custom'
+
+Rails.start()
