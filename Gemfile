@@ -38,6 +38,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem "carrierwave"
 
+gem 'aws-sdk-s3', '~> 1.60'
+
 gem 'simple_calendar'
 
 gem 'i18n'
