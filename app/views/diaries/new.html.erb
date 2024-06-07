@@ -75,7 +75,7 @@
             zoom: 12,
           });
 
-          marker = new google.maps.Marker({
+          marker = new google.maps.marker.AdvancedMarkerElement({
             position:  {lat: 35.6895, lng: 139.6917},
             map: map
           });
@@ -101,7 +101,7 @@
           });   
         }
       </script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" defer></script>
+      <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap" defer></script>
     <% end %>
   </div>
 
