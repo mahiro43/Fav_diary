@@ -11,7 +11,7 @@ Rails.application.routes.draw do
         get :autocomplete
       end
       member do
-        delete 'delete_image/:image_id', to: 'diaries#delete_image', as: 'delete_image'
+        delete 'delete_image/:image_id', to: 'diaries#delete_image', as: :delete_image
       end
     end
   end
