@@ -5,4 +5,4 @@
 //= require rails-ujs
 import "@hotwired/turbo-rails"
 import "controllers"
-import "./custom";
+import "custom";
