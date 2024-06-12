@@ -59,7 +59,10 @@
       <%= form.hidden_field :latitude, id: 'latitude' %>
       <%= form.hidden_field :longitude, id: 'longitude' %>
 
-      <input type="button" value="Encode" onclick="codeAddress()">
+      <input type="button" value="検索" onclick="codeAddress()">
+      <label for="searchButton">検索をクリックすると住所に入力したマップが出てきます</label>
+
+
       <div id="display"></div>
       <div id='map'></div>
 
