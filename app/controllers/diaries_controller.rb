@@ -2,6 +2,7 @@ class DiariesController < ApplicationController
   before_action :set_diary, only: [:show, :edit, :update, :destroy, :delete_image]
   before_action :set_fav
   before_action :set_diaries, only: [:index, :calendar]
+  before_action :correct_user, only: [:edit, :update, :destroy, :show]
   def index
     if params[:fav_id]
       @fav = Fav.find_by(id: params[:fav_id])
@@ -34,12 +35,6 @@ class DiariesController < ApplicationController
 
     # カレンダーを表示するための日付範囲
     @date_range = (start_date.beginning_of_week(:monday)..end_date.end_of_week(:monday)).to_a
-  end
-
-  def autocomplete
-    query = params[:term] || params[:q]  # クエリパラメータに応じて調整
-    @diaries = @fav.diaries.where("content LIKE ?", "%#{query}%").limit(5)
-    render json: @diaries.map { |diary| { id: diary.id, content: diary.content } }
   end
       
   def new
@@ -105,6 +100,14 @@ class DiariesController < ApplicationController
 
   def set_diaries
     @diaries = @fav ? @fav.diaries : Diary.all
+  end
+
+  def correct_user
+    @fav = current_user.favs.find_by(id: params[:fav_id])
+    if @fav
+      @diary = @fav.diaries.find_by(id: params[:id])
+    end
+    redirect_to(root_url) if @diary.nil?
   end
 
   def diary_params

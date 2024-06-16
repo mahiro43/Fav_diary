@@ -1,5 +1,7 @@
 class FavsController < ApplicationController
   before_action :set_fav, only: [:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+
   def index
     #@favs = Fav.all
     @favs = current_user.favs
@@ -45,6 +47,11 @@ class FavsController < ApplicationController
     
   def set_fav
     @fav = Fav.find(params[:id])
+  end
+
+  def correct_user
+    @fav = current_user.favs.find_by(id: params[:id])
+    redirect_to(root_url) if @fav.nil?
   end
     
   def fav_params
