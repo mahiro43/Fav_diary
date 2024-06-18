@@ -1,5 +1,13 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: rgba(242, 121, 228, 0.4); /* ヘッダーの背景色を設定 */ 
@@ -22,7 +30,7 @@ header {
 }
 
 h1 {
-  font-size: 30px;
+  font-size: 24px;
   color: #333;
   margin-left: 10px;
 }
@@ -38,10 +46,15 @@ h1 {
   margin-left: 10px;
 }
 
+.nav-content {
+  display: flex;
+  gap: 10px;
+}
+
 .body-content {
   display: flex;
   align-items: center;
-  margin: 60px;
+  margin: 20px;
 }
 
 .body-image {
@@ -98,4 +111,35 @@ h3 {
 .footer-content ul li a {
   color: white;
   text-decoration: none;
+}
+
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header-content {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .nav-content {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  .body-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .body-image {
+    margin-bottom: 20px;
+  }
+
+  h2 {
+    margin-left: 0;
+  }
 }
