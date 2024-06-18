@@ -16,10 +16,11 @@
               <%= f.password_field :password, class: 'form-control' %>
             </div>
 
-            <%= f.label :remember_me, class: 'checkbox inline' do %>
-              <%= f.check_box :remember_me %> 次回から自動的にログインする
+            <%= f.label :remember_me do %>
+              <%= f.check_box :remember_me %>
+              <span>次回から自動的にログイン</span>
             <% end %>
-            
+                        
             <div class="form-group text-center"> <!-- ボタンを中央揃えにする -->
               <%= f.submit "ログイン", class: 'btn btn-primary' %>
             </div>

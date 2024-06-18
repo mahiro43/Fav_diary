@@ -9,20 +9,15 @@ class ApplicationController < ActionController::Base
   end
     
   def current_user
-    @current_user ||= User.find_by(id: session[:user_id])
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
     
   def logged_in?
-    !current_user.nil?
+    !!current_user
   end
 
-  private
-
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
+  def log_out
+    session[:user_id] = nil
+    @current_user = nil
   end
 end

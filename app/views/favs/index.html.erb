@@ -68,12 +68,32 @@
   margin: 0 auto; /* ボタンを中央に配置 */
 }
 
+.logout-button {
+    margin-left: auto;
+    background-color: white; /* ボタンの背景色を白に設定 */
+    color: black; /* ボタンのテキスト色を黒に設定 */
+    border: 1px solid black; /* ボタンの境界線を黒に設定 */
+    padding: 8px 8px; /* ボタンの内側の余白を設定 */
+    border-radius: 10px; /* ボタンの角を丸く設定 */
+    text-decoration: none;
+  }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
 </style>
 </head>
 <body>
 <div class="container mt-5">
   <div class="text-center">
+    <%= link_to 'ログアウト', logout_path, method: :post, class: 'logout-button' %>
     <h1 class="mt-4">推し一覧</h1>
+  </div>
+  <div class="text-center">
     <div class="favs-container">
       <% @favs.each do |fav| %>
         <div class="fav-item">
