@@ -1,10 +1,13 @@
-# Fav_diary
-
 # 推し活日記
 
+https://www.canva.com/design/DAGJ6Udqt80/eKdeKkqVZ9J1_--AaxC7_Q/edit?utm_content=DAGJ6Udqt80&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+
+# サービスURL
+https://www.oshiniki.com/
+
+
 ## サービス概要
-普段日記をつけない方でも推し活をした時に振り返りようで日記をつけることができて推しごとに分けて
-記載することができて見返すことができる
+普段日記をつけない方でも推し活をした時に振り返りようで日記をつけることができて推しごとに分けて記載することができて見返すことができるようになっております
 
 
 ##　想定されるユーザー層
