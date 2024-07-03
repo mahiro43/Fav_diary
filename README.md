@@ -1,6 +1,6 @@
 # 推し活日記
 
-https://share.icloud.com/photos/0e4bHHHEM3RQXRzBwAv6BoYrg
+[![Image from Gyazo](https://i.gyazo.com/6862a032c450fd00f061b3bc3594bedc.png)](https://gyazo.com/6862a032c450fd00f061b3bc3594bedc)
 
 # サービスURL
 https://www.oshiniki.com/
