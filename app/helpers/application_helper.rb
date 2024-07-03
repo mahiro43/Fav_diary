@@ -5,8 +5,8 @@ module ApplicationHelper
     
   def default_meta_tags
     {
-      site: '私の推し事活動',
-      title: '私の推し事活動',
+      site: '推し活日記',
+      title: '推し活日記',
       reverse: true,
       separator: '|',
       description: '推し別に推し活の記録を書けるサービス',
@@ -18,8 +18,8 @@ module ApplicationHelper
         { href: image_url('ogp.png'), rel: 'apple-touch-icon', sizes: '180x180', type: 'image/png' },
       ],
       og: {
-        site_name: '私の推し事活動',
-        title: '私の推し事活動',
+        site_name: '推し活日記',
+        title: '推し活日記',
         description: '推し別に推し活の記録を書けるサービス', 
         type: 'website',
         url: request.original_url,
