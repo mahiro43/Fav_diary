@@ -1,6 +1,6 @@
 # 推し活日記
 
-https://www.canva.com/design/DAGJ6Udqt80/eKdeKkqVZ9J1_--AaxC7_Q/edit?utm_content=DAGJ6Udqt80&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton
+https://share.icloud.com/photos/0e4bHHHEM3RQXRzBwAv6BoYrg
 
 # サービスURL
 https://www.oshiniki.com/
